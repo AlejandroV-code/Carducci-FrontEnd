@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loging</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+   <form>
+    <img src="img/user.png" alt="user-img">
+    <label for="username">Usuario</label>
+    <input type="text" id="email" placeholder="escriba su correo" required>
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" placeholder="escriba su contraseña" required>
+    <div class="box-visible">
+       <input type="checkbox" id = "visible">
+         <label for="visible">Mostrar contraseña</label>
+    </div>
+    <button type="submit" id ="submit">Iniciar sesión</button>
+    </form> 
+
+    <script >
+        async function authCheck() {
+            try {
+                const response = await fetch('https://api.residencia.nomics.tech/auth/check', {
+                    method: 'GET',
+                    credentials: 'include' // importante si usa cookies/sesión
+                });
+        
+                if (!response.ok) {
+                    throw new Error('Error en la petición');
+                }
+        
+                const data = await response.json();
+                console.log('Check:', data);
+        
+                // Si ya está autenticado, podrías redirigir
+                 window.location.href="home.html";
+        
+            } catch(error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        // Primera función que se ejecuta
+        authCheck();
+        </script>
+        
+        <script src="./js/login.js"></script>
+        
+</body>
+</html>
