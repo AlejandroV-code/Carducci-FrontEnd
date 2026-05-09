@@ -46,9 +46,11 @@ $sendBtn.addEventListener("click", async () => {
         }
 
         const data = await response.json();
+        console.log("Respuesta del back:", data);
 
         // respuesta bot
-        addMessage(data.response, "bot");
+        const botText = data.response ?? data.message ?? data.reply ?? data.answer ?? data.text ?? JSON.stringify(data);
+        addMessage(botText, "bot");
 
     } catch(error){
 
