@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +7,37 @@
     <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
-    <div class="chat-container">
+
+    <div class="pantalla-inicio" id="splash">
+        <div class="contenido-inicio">
+            <h1 class="titulo-inicio">Carducci</h1>
+            <p class="subtitulo-inicio">Asistente IA</p>
+        </div>
+    </div>
+
+    <div class="contenedor-chat">
 
         <header>
-            
             <h1>AI CHATBOT</h1>
         </header>
 
-        <div id="chat-box" class="chat-box">
-            <div class="message bot-message">¡Hola! ¿En qué puedo ayudarte?</div>
+        <div id="caja-mensajes" class="caja-mensajes">
+            <div class="mensaje mensaje-bot">¡Hola! ¿En qué puedo ayudarte?</div>
         </div>
 
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
-            <button id="send-btn">Enviar</button>
+        <div class="zona-entrada">
+            <input type="text" id="entrada-usuario" placeholder="Escribe tu mensaje aquí...">
+            <button id="boton-enviar">Enviar</button>
         </div>
 
     </div>
     <script src="js/chatbot.js"></script>
+    <script>
+        document.getElementById('splash').addEventListener('animationend', function (e) {
+            if (e.animationName === 'desvanecerSalida') {
+                this.remove();
+            }
+        });
+    </script>
 </body>
 </html>

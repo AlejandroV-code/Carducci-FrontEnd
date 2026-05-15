@@ -3,8 +3,50 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
+
+.pantalla-inicio {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: desvanecerSalida 2s ease forwards 2s;
+}
+
+.contenido-inicio {
+    text-align: center;
+}
+
+.titulo-inicio {
+    font-size: clamp(3rem, 12vw, 6.5rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.12em;
+    animation: aparecerEntrada 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.subtitulo-inicio {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    animation: aparecerEntrada 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@keyframes aparecerEntrada {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes desvanecerSalida {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -16,7 +58,7 @@ body {
     min-height: 100vh;
 }
 
-.chat-container {
+.contenedor-chat {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -47,7 +89,7 @@ header h1 {
     font-weight: 500;
 }
 
-.chat-box {
+.caja-mensajes {
     flex: 1;
     padding: 16px;
     overflow-y: auto;
@@ -56,7 +98,7 @@ header h1 {
     gap: 12px;
 }
 
-.message {
+.mensaje {
     max-width: 85%;
     padding: 10px 14px;
     border-radius: 14px;
@@ -64,27 +106,27 @@ header h1 {
     line-height: 1.5;
 }
 
-.bot-message {
+.mensaje-bot {
     background: #f0f0f0;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
 
-.user-message {
+.mensaje-usuario {
     background: royalblue;
     color: #fff;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
 }
 
-.input-area {
+.zona-entrada {
     display: flex;
     gap: 8px;
     padding: 12px 16px;
     border-top: 1px solid #ccc;
 }
 
-.input-area input {
+.zona-entrada input {
     flex: 1;
     border-radius: 20px;
     border: 1px solid #ccc;
@@ -93,7 +135,7 @@ header h1 {
     font-size: 15px;
 }
 
-.input-area button {
+.zona-entrada button {
     outline: 0;
     border: 0;
     background-color: royalblue;
@@ -106,7 +148,7 @@ header h1 {
     transition: all 0.3s ease-in-out;
 }
 
-.input-area button:hover {
+.zona-entrada button:hover {
     opacity: .75;
 }
 
@@ -117,7 +159,7 @@ header h1 {
         align-items: center;
     }
 
-    .chat-container {
+    .contenedor-chat {
         width: 70vw;
         max-width: 900px;
         height: 80vh;
@@ -140,27 +182,27 @@ header h1 {
         font-size: 20px;
     }
 
-    .chat-box {
+    .caja-mensajes {
         padding: 24px 32px;
         gap: 14px;
     }
 
-    .message {
+    .mensaje {
         max-width: 65%;
         padding: 10px 16px;
         font-size: 15px;
     }
 
-    .input-area {
+    .zona-entrada {
         padding: 16px 24px;
     }
 
-    .input-area input {
+    .zona-entrada input {
         padding: 12px 16px;
         font-size: 15px;
     }
 
-    .input-area button {
+    .zona-entrada button {
         padding: 8px 28px;
         font-size: 15px;
     }

@@ -1,33 +1,32 @@
-const $sendBtn = document.getElementById("send-btn");
-const $userInput = document.getElementById("user-input");
-const $chatBox = document.getElementById("chat-box");
+const $botonEnviar = document.getElementById("boton-enviar");
+const $entradaUsuario = document.getElementById("entrada-usuario");
+const $cajaMensajes = document.getElementById("caja-mensajes");
 
-function addMessage(text, type) {
-    const msg = document.createElement("div");
+function agregarMensaje(texto, tipo) {
+    const mensaje = document.createElement("div");
 
-    msg.classList.add("message", `${type}-message`);
+    mensaje.classList.add("mensaje", `mensaje-${tipo}`);
 
-    msg.textContent = text;
+    mensaje.textContent = texto;
 
-    $chatBox.appendChild(msg);
+    $cajaMensajes.appendChild(mensaje);
 
-    $chatBox.scrollTop = $chatBox.scrollHeight;
+    $cajaMensajes.scrollTop = $cajaMensajes.scrollHeight;
 }
 
-$sendBtn.addEventListener("click", async () => {
+$botonEnviar.addEventListener("click", async () => {
 
-    const text = $userInput.value.trim();
+    const texto = $entradaUsuario.value.trim();
 
-    if (!text) return;
+    if (!texto) return;
 
-    // mensaje usuario
-    addMessage(text, "user");
+    agregarMensaje(texto, "usuario");
 
-    $userInput.value = "";
+    $entradaUsuario.value = "";
 
     try {
 
-        const response = await fetch(
+        const respuesta = await fetch(
             "https://api.residencia.nomics.tech/chatbot",
             {
                 method: "POST",
@@ -36,33 +35,32 @@ $sendBtn.addEventListener("click", async () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    message: text
+                    message: texto
                 })
             }
         );
 
-        if(!response.ok){
+        if (!respuesta.ok) {
             throw new Error("Error en la API");
         }
 
-        const data = await response.json();
-        console.log("Respuesta del back:", data);
+        const datos = await respuesta.json();
+        console.log("Respuesta del back:", datos);
 
-        // respuesta bot
-        const botText = data.response ?? data.message ?? data.reply ?? data.answer ?? data.text ?? JSON.stringify(data);
-        addMessage(botText, "bot");
+        const textoBoot = datos.response ?? datos.message ?? datos.reply ?? datos.answer ?? datos.text ?? JSON.stringify(datos);
+        agregarMensaje(textoBoot, "bot");
 
-    } catch(error){
+    } catch (error) {
 
         console.error(error);
 
-        addMessage("Ocurrió un error.", "bot");
+        agregarMensaje("Ocurrió un error.", "bot");
     }
 
 });
 
-$userInput.addEventListener("keydown", (e) => {
+$entradaUsuario.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-        $sendBtn.click();
+        $botonEnviar.click();
     }
 });
