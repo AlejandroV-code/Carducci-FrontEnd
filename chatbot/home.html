@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHATBOT</title>
+    <title>CARDUCCI BOT</title>
     <link rel="stylesheet" href="css/chat.css">
+    <link rel="icon" type="image/png" href="img/carducci.jpg">
 </head>
 <body>
 
@@ -18,11 +19,11 @@
     <div class="contenedor-chat">
 
         <header>
-            <h1>AI CHATBOT</h1>
+            <h1>CARDUCCI BOT</h1>
         </header>
 
         <div id="caja-mensajes" class="caja-mensajes">
-            <div class="mensaje mensaje-bot">¡Hola! ¿En qué puedo ayudarte?</div>
+            <!-- <div class="mensaje mensaje-bot">¡Hola! ¿En qué puedo ayudarte?</div> -->
         </div>
 
         <div class="zona-entrada">
@@ -31,6 +32,10 @@
         </div>
 
     </div>
+    <!-- convierte el texto markdown a lenguaje html -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- limpia el texto de cualquier virus malicioso que pueda contener el markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
     <script src="js/chatbot.js"></script>
     <script>
         document.getElementById('splash').addEventListener('animationend', function (e) {
